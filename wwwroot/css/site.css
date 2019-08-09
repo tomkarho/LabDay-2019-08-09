@@ -1,0 +1,12 @@
+﻿html, body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: #e6f0e9;
+}
+
+.main {
+
+}
+
+.fill-space {
+    flex: 1 1 auto;
+}

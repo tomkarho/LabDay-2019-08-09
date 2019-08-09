@@ -1,0 +1,22 @@
+﻿@page "/"
+@inject ITaskManager TaskManager
+
+<NewTask OnAdd="@UpdateTaskList" />
+
+@foreach(var t in Tasks) {
+    <TaskRow Task=t OnChange="@UpdateTaskList" />
+}
+
+@code {
+    List<Todo> Tasks;
+
+    protected override async Task OnInitAsync()
+    {
+        Tasks = TaskManager.GetTasks();
+    }
+
+    void UpdateTaskList() 
+    {
+        StateHasChanged();
+    }
+}

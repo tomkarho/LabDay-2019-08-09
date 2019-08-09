@@ -1,0 +1,37 @@
+@inject ITaskManager TaskManager
+
+<MatCard style="@style">
+    <div class="fill-space">
+        <h2>@Task.Title</h2>
+        <p>@Task.Description</p>
+    </div>
+    <MatCheckbox @bind-Checked="@Task.Done" Label=""></MatCheckbox>
+    <MatButton Icon="delete" OnClick="@RemoveTask" Label=""></MatButton>
+</MatCard>
+
+@code {
+    string style = @"
+        display: flex;
+        flex-direction: row;
+        margin: 12px auto;
+        padding-left: 12px;
+
+        h2 {
+            margin-right: 12px;
+        }
+
+        p {
+            margin-right: 12px;
+        }
+    ";
+
+    [Parameter]
+    Todo Task { get; set; }
+
+    [Parameter] protected Action OnChange { get; set; }
+
+    void RemoveTask() {
+        TaskManager.RemoveTask(Task);
+        OnChange.Invoke();
+    }
+}

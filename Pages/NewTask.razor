@@ -1,0 +1,20 @@
+@inject ITaskManager TaskManager
+
+<form>
+    <MatTextField @bind-Value="@Task.Title" Label="Title"></MatTextField>
+    <MatTextField @bind-Value="@Task.Description" Label="Description"></MatTextField>
+    <MatButton type="button" OnClick="@Save" Icon="save" Label="Save"></MatButton>
+</form>
+
+@code {
+        
+    [Parameter] protected Action OnAdd { get; set; }
+
+    Todo Task = new Todo();
+    
+    public void Save() {
+        TaskManager.AddTask(Task);
+        OnAdd.Invoke();
+        Task = new Todo();
+    }
+}
